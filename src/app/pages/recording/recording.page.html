@@ -1,0 +1,55 @@
+<ion-content [fullscreen]="true">
+  <div class="flex-content">
+    <div *ngIf="recordAudio">
+      <div class="flex-button-text">
+        <ion-button shape="round" fill="clear">
+          <ion-icon class="record-Button" slot="icon-only" name="close-circle-outline"></ion-icon>
+        </ion-button>
+        <span>Discard</span>
+      </div>
+    </div>
+
+    <div>
+      <ion-button shape="round" color="danger" (click)="onRecordAudio()">
+        <!-- <ion-icon class="mic-Button" slot="icon-only" name="mic-outline"></ion-icon> -->
+
+        <ion-icon class="mic-Button" slot="icon-only"
+          [name]="recordAudio? 'stop-circle-outline': 'mic-outline'"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div *ngIf="recordAudio">
+      <div class="flex-button-text">
+        <ion-button shape="round" fill="clear">
+          <ion-icon class="record-Button" slot="icon-only" name="checkmark-circle-outline"></ion-icon>
+        </ion-button>
+        <span>Save</span>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home">
+          <ion-icon name="play-circle"></ion-icon>
+          Listen Now
+        </ion-tab-button>
+        <ion-tab-button tab="radio">
+          <ion-icon name="radio"></ion-icon>
+          Radio
+        </ion-tab-button>
+        <ion-tab-button tab="library">
+          <ion-icon name="library"></ion-icon>
+          Library
+        </ion-tab-button>
+        <ion-tab-button tab="search">
+          <ion-icon name="search"></ion-icon>
+          Search
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

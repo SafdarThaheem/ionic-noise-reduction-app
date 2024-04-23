@@ -1,0 +1,37 @@
+.record-Button {
+  color: white;
+  font-size: 64px;
+}
+
+.mic-Button {
+  color: white;
+  font-size: 85px;
+  padding: 5px;
+}
+
+.add-audio {
+  color: white;
+  font-size: 40px;
+  padding: 5px;
+}
+
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.flex-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: end;
+  padding: 30px 0;
+  height: 100%;
+}
+
+.flex-button-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
