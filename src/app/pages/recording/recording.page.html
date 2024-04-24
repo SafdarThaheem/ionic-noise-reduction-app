@@ -1,29 +1,37 @@
 <ion-content [fullscreen]="true">
-  <div class="flex-content">
-    <div *ngIf="recordAudio">
-      <div class="flex-button-text">
-        <ion-button shape="round" fill="clear">
-          <ion-icon class="record-Button" slot="icon-only" name="close-circle-outline"></ion-icon>
-        </ion-button>
-        <span>Discard</span>
+  <div class="record-screen-wrapper">
+    <div class="audio-file">
+      <audio controls *ngIf="url">
+        <source [src]="sanitizer(url)" type="audio/wav" />
+      </audio>
+    </div>
+    <div class="record-time ion-text-center">
+      <h1>{{recordingTime}}</h1>
+    </div>
+    <div class="flex-content record-controls">
+      <div *ngIf="recordAudio">
+        <div class="flex-button-text">
+          <ion-button shape="round" (click)="discardRecording()" fill="clear">
+            <ion-icon class="record-Button" slot="icon-only" name="close-circle-outline"></ion-icon>
+          </ion-button>
+          <span>Discard</span>
+        </div>
       </div>
-    </div>
 
-    <div>
-      <ion-button shape="round" color="danger" (click)="onRecordAudio()">
-        <!-- <ion-icon class="mic-Button" slot="icon-only" name="mic-outline"></ion-icon> -->
-
-        <ion-icon class="mic-Button" slot="icon-only"
-          [name]="recordAudio? 'stop-circle-outline': 'mic-outline'"></ion-icon>
-      </ion-button>
-    </div>
-
-    <div *ngIf="recordAudio">
-      <div class="flex-button-text">
-        <ion-button shape="round" fill="clear">
-          <ion-icon class="record-Button" slot="icon-only" name="checkmark-circle-outline"></ion-icon>
+      <div>
+        <ion-button shape="round" color="danger" [disabled]="recordAudio" (click)="startRecording()">
+          <ion-icon class="mic-Button" slot="icon-only"
+            [name]="recordAudio? 'stop-circle-outline': 'mic-outline'"></ion-icon>
         </ion-button>
-        <span>Save</span>
+      </div>
+
+      <div *ngIf="recordAudio">
+        <div class="flex-button-text">
+          <ion-button shape="round" fill="clear" (click)="stopRecording()">
+            <ion-icon class="record-Button" slot="icon-only" name="checkmark-circle-outline"></ion-icon>
+          </ion-button>
+          <span>Save</span>
+        </div>
       </div>
     </div>
   </div>
