@@ -13,6 +13,10 @@ export class WebSocketService {
 
   sendAudioToSocket(audioData: any) {
     console.log(audioData);
-    return this.socket.emit('audio', audioData);
+    this.socket.emit('audio', audioData);
+  }
+
+  sendUploadedFile(file: any) {
+    this.socket.emit('file', file);
   }
 }

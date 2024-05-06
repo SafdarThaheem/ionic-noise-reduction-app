@@ -1,5 +1,6 @@
 <ion-content [fullscreen]="true">
   <div class="flex-center">
-    <ion-button>add audio file</ion-button>
+    <input type="file" (change)="onFileSelect($event)" accept="audio/*" />
+    <ion-button type="ion-button" expand="full" (click)="uploadFile()">Upload</ion-button>
   </div>
 </ion-content>
