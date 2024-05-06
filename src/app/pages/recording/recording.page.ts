@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as RecordRTC from 'recordrtc';
 import { Options } from 'recordrtc';
+import { WebSocketService } from 'src/app/services/web-socket.service';
 
 @Component({
   selector: 'app-recording',
@@ -18,7 +19,10 @@ export class RecordingPage implements OnInit {
   timer: any;
   startTime!: number;
 
-  constructor(private domSanitizer: DomSanitizer) {}
+  constructor(
+    private domSanitizer: DomSanitizer,
+    private webSocketService: WebSocketService
+  ) {}
 
   sanitizer(url: string) {
     return this.domSanitizer.bypassSecurityTrustUrl(url);
@@ -63,7 +67,7 @@ export class RecordingPage implements OnInit {
   }
 
   discardRecording() {
-    console.log('discard Recording');
+    // console.log('discard Recording');
     this.recordAudio = false;
     clearInterval(this.timer); // Stop the recording timer
     this.recordingTime = '00:00'; // Reset recording time
@@ -72,8 +76,9 @@ export class RecordingPage implements OnInit {
 
   processRecording(blob: any) {
     this.url = URL.createObjectURL(blob);
-    console.log('blob ', blob);
-    console.log(this.url);
+    this.webSocketService.sendAudioToSocket(blob);
+    // console.log('blob ', blob);
+    // console.log(this.url);
   }
 
   errorCallback(error: any) {
